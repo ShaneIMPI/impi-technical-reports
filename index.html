@@ -18,17 +18,13 @@
     --dark: #3A3A3A; --light: #F7F7F7; --border: #E0E0E0; --white: #fff;
     --green-bg: #E8F5E9; --amber-bg: #FFF8E1; --red-bg: #FFEBEE;
     --safe-top: env(safe-area-inset-top, 0px);
+    --safe-bottom: env(safe-area-inset-bottom, 0px);
   }
   html, body { height: 100%; }
   body { font-family: Arial, sans-serif; background: #EBEBEB; color: var(--dark); -webkit-text-size-adjust: 100%; }
-
+ 
   /* ── HEADER ── */
-  .app-header {
-    background: var(--red); padding: 12px 16px;
-    padding-top: calc(12px + var(--safe-top));
-    position: sticky; top: 0; z-index: 100;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.25);
-  }
+  .app-header { background: var(--red); padding: 12px 16px; padding-top: calc(12px + var(--safe-top)); position: sticky; top: 0; z-index: 100; box-shadow: 0 2px 8px rgba(0,0,0,0.25); }
   .header-inner { display: flex; align-items: center; gap: 14px; }
   .logo-block { line-height: 1; flex-shrink: 0; }
   .logo-name { font-size: 17px; font-weight: 900; color: #fff; }
@@ -37,168 +33,219 @@
   .header-text { flex: 1; border-left: 2px solid rgba(255,255,255,0.35); padding-left: 12px; }
   .header-text h1 { font-size: 13px; color: #fff; font-weight: 700; }
   .header-text p { font-size: 10px; color: rgba(255,255,255,0.65); margin-top: 1px; }
+  .header-admin-btn { background: rgba(255,255,255,0.2); color: #fff; border: 1px solid rgba(255,255,255,0.4); padding: 6px 12px; border-radius: 6px; font-size: 11px; font-weight: 700; cursor: pointer; font-family: inherit; flex-shrink: 0; }
   .progress-bar { height: 3px; background: rgba(255,255,255,0.25); border-radius: 2px; margin-top: 8px; }
   .progress-fill { height: 100%; background: var(--yellow); border-radius: 2px; transition: width 0.3s; }
-
+ 
   /* ── LAYOUT ── */
   .container { max-width: 700px; margin: 0 auto; padding: 16px 12px 80px; }
-
+ 
   /* ── STEP NAV ── */
   .step-nav { display: flex; gap: 5px; margin-bottom: 16px; overflow-x: auto; padding-bottom: 4px; -webkit-overflow-scrolling: touch; }
   .step-nav::-webkit-scrollbar { display: none; }
-  .step-btn {
-    padding: 6px 13px; border-radius: 20px; font-size: 11px; font-weight: 700;
-    border: 1.5px solid var(--border); background: #fff; color: #888;
-    cursor: pointer; font-family: inherit; white-space: nowrap; flex-shrink: 0;
-    -webkit-tap-highlight-color: transparent;
-  }
+  .step-btn { padding: 6px 13px; border-radius: 20px; font-size: 11px; font-weight: 700; border: 1.5px solid var(--border); background: #fff; color: #888; cursor: pointer; font-family: inherit; white-space: nowrap; flex-shrink: 0; -webkit-tap-highlight-color: transparent; }
   .step-btn.active { background: var(--red); border-color: var(--red); color: #fff; }
   .step-btn.done { border-color: var(--green); color: var(--green); background: var(--green-bg); }
-
+ 
   /* ── CARD ── */
-  .card { margin-bottom: 0; }
   .card-head { padding: 10px 14px; font-size: 11px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: #fff; border-radius: 6px 6px 0 0; }
   .card-body { border: 1.5px solid; border-top: none; border-radius: 0 0 6px 6px; padding: 16px; background: #fff; }
-
+ 
   /* ── FIELDS ── */
   .field { margin-bottom: 14px; }
   .field label { display: block; font-size: 10px; font-weight: 700; color: var(--dark-red); margin-bottom: 4px; text-transform: uppercase; letter-spacing: 0.04em; }
   .field .hint { font-size: 10px; color: #999; margin-top: 3px; line-height: 1.4; }
   .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 0 14px; }
   .grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 0 10px; }
-  @media (max-width: 480px) {
-    .grid-2 { grid-template-columns: 1fr; }
-    .grid-3 { grid-template-columns: 1fr 1fr; }
+  @media (max-width: 480px) { .grid-2 { grid-template-columns: 1fr; } .grid-3 { grid-template-columns: 1fr 1fr; } }
+ 
+  input[type="text"], input[type="email"], input[type="password"], select, textarea {
+    width: 100%; padding: 9px 10px; border: 1px solid var(--border); border-radius: 6px; font-size: 14px; color: var(--dark); font-family: inherit; outline: none; background: #fff; -webkit-appearance: none; appearance: none; transition: border-color 0.15s;
   }
-
-  input[type="text"], select, textarea {
-    width: 100%; padding: 9px 10px; border: 1px solid var(--border);
-    border-radius: 6px; font-size: 14px; color: var(--dark);
-    font-family: inherit; outline: none; background: #fff;
-    -webkit-appearance: none; appearance: none;
-    transition: border-color 0.15s;
-  }
-  input[type="text"]:focus, select:focus, textarea:focus { border-color: var(--red); }
+  input:focus, select:focus, textarea:focus { border-color: var(--red); }
   select { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23999' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 10px center; padding-right: 30px; }
   textarea { resize: vertical; line-height: 1.5; min-height: 80px; }
-
+ 
   /* ── BUTTONS ── */
-  .btn { padding: 10px 20px; border-radius: 7px; font-size: 13px; font-weight: 700; cursor: pointer; font-family: inherit; border: none; -webkit-tap-highlight-color: transparent; }
+  .btn { padding: 10px 20px; border-radius: 7px; font-size: 13px; font-weight: 700; cursor: pointer; font-family: inherit; border: none; -webkit-tap-highlight-color: transparent; transition: opacity 0.15s; }
+  .btn:hover { opacity: 0.88; }
   .btn-primary { background: var(--red); color: #fff; }
   .btn-ghost { background: #fff; color: #666; border: 1px solid var(--border); }
   .btn-green { background: var(--green); color: #fff; }
-  .btn-add {
-    display: flex; align-items: center; gap: 6px; padding: 8px 14px;
-    border: 1.5px dashed var(--red); border-radius: 6px; background: transparent;
-    color: var(--red); font-size: 12px; font-weight: 700; cursor: pointer;
-    margin-top: 8px; font-family: inherit; -webkit-tap-highlight-color: transparent;
-  }
-  .btn-remove {
-    padding: 4px 10px; border: 1px solid #e0b0b0; border-radius: 4px;
-    background: #fff0f0; color: var(--status-red); font-size: 11px;
-    cursor: pointer; font-family: inherit; flex-shrink: 0; -webkit-tap-highlight-color: transparent;
-  }
-  .btn-generate {
-    width: 100%; padding: 16px; background: var(--red); color: #fff;
-    border: none; border-radius: 8px; font-size: 16px; font-weight: 700;
-    cursor: pointer; font-family: inherit; -webkit-tap-highlight-color: transparent;
-  }
-  .btn-generate:disabled { background: #bbb; }
-
+  .btn-add { display: flex; align-items: center; gap: 6px; padding: 8px 14px; border: 1.5px dashed var(--red); border-radius: 6px; background: transparent; color: var(--red); font-size: 12px; font-weight: 700; cursor: pointer; margin-top: 8px; font-family: inherit; }
+  .btn-remove { padding: 4px 10px; border: 1px solid #e0b0b0; border-radius: 4px; background: #fff0f0; color: var(--status-red); font-size: 11px; cursor: pointer; font-family: inherit; flex-shrink: 0; }
+  .btn-submit { width: 100%; padding: 16px; background: var(--green); color: #fff; border: none; border-radius: 8px; font-size: 16px; font-weight: 700; cursor: pointer; font-family: inherit; }
+  .btn-submit:disabled { background: #bbb; cursor: not-allowed; }
+ 
   /* ── ITEMS ── */
   .item-box { background: #fafafa; border: 1px solid #eee; border-radius: 7px; padding: 14px 12px 8px; margin-bottom: 10px; }
   .item-box-hdr { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; }
   .item-lbl { font-weight: 700; font-size: 12px; }
   .out-row { display: flex; gap: 10px; align-items: flex-start; margin-bottom: 10px; }
   .out-num { background: var(--amber); color: #fff; min-width: 26px; height: 26px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 700; flex-shrink: 0; margin-top: 8px; }
-
-  /* ── NAV FOOTER ── */
   .nav-footer { display: flex; gap: 10px; justify-content: flex-end; margin-top: 18px; padding-top: 14px; border-top: 1px solid #eee; }
-
-  /* ── INSTALL BANNER ── */
-  .install-banner {
-    background: #1A3A5C; border-radius: 8px; padding: 14px 16px;
-    display: flex; align-items: center; gap: 12px; margin-bottom: 16px;
-  }
-  .install-banner-icon { font-size: 24px; flex-shrink: 0; }
-  .install-banner-text { flex: 1; }
-  .install-banner-text h3 { font-size: 13px; color: #fff; margin-bottom: 3px; }
-  .install-banner-text p { font-size: 11px; color: rgba(255,255,255,0.7); line-height: 1.4; }
-  .install-banner-btn { background: var(--yellow); color: #333; border: none; padding: 8px 14px; border-radius: 6px; font-size: 12px; font-weight: 700; cursor: pointer; font-family: inherit; flex-shrink: 0; }
-
+ 
   /* ── SUCCESS ── */
-  .success-banner { background: var(--green-bg); border: 1.5px solid var(--green); border-radius: 8px; padding: 14px 16px; margin-top: 14px; }
-  .success-banner h3 { color: var(--green); font-size: 14px; margin-bottom: 4px; }
-  .success-banner p { font-size: 12px; color: #555; margin-bottom: 10px; }
-  .success-actions { display: flex; gap: 8px; flex-wrap: wrap; }
-
+  .success-screen { text-align: center; padding: 40px 20px; }
+  .success-icon { font-size: 64px; margin-bottom: 16px; }
+  .success-screen h2 { font-size: 22px; color: var(--green); margin-bottom: 10px; }
+  .success-screen p { font-size: 14px; color: #666; line-height: 1.6; margin-bottom: 24px; }
+ 
   /* ── ERROR ── */
   .error-box { background: var(--red-bg); border: 1px solid #ffcdd2; border-radius: 6px; padding: 10px 12px; color: #c62828; font-size: 12px; margin-bottom: 12px; }
-
+ 
+  /* ── ADMIN LOGIN ── */
+  .admin-login { max-width: 380px; margin: 60px auto; background: #fff; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 20px rgba(0,0,0,0.12); }
+  .admin-login-head { background: var(--red); padding: 28px 24px; text-align: center; }
+  .admin-login-head h2 { color: #fff; font-size: 18px; margin-bottom: 4px; }
+  .admin-login-head p { color: rgba(255,255,255,0.7); font-size: 12px; }
+  .admin-login-body { padding: 24px; }
+  .admin-login-body .field { margin-bottom: 16px; }
+ 
+  /* ── ADMIN DASHBOARD ── */
+  .admin-header { background: var(--dark); color: #fff; padding: 14px 20px; display: flex; align-items: center; justify-content: space-between; }
+  .admin-header h2 { font-size: 15px; }
+  .admin-header p { font-size: 11px; color: #aaa; margin-top: 2px; }
+  .admin-container { max-width: 1000px; margin: 0 auto; padding: 20px 12px 60px; }
+  .stats-row { display: flex; gap: 10px; margin-bottom: 20px; flex-wrap: wrap; }
+  .stat-card { flex: 1; min-width: 120px; background: #fff; border-radius: 8px; padding: 14px; border-top: 4px solid; }
+  .stat-card-n { font-size: 32px; font-weight: 700; line-height: 1; margin-bottom: 4px; }
+  .stat-card-l { font-size: 11px; color: #888; }
+  .filter-bar { background: #fff; border-radius: 8px; padding: 14px; margin-bottom: 16px; display: flex; gap: 10px; flex-wrap: wrap; align-items: flex-end; }
+  .filter-bar .field { margin: 0; flex: 1; min-width: 140px; }
+  .reports-list { display: flex; flex-direction: column; gap: 10px; }
+  .report-card { background: #fff; border-radius: 8px; padding: 16px; border-left: 4px solid var(--red); cursor: pointer; transition: box-shadow 0.15s; }
+  .report-card:hover { box-shadow: 0 2px 12px rgba(0,0,0,0.1); }
+  .report-card-top { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 8px; }
+  .report-card-title { font-weight: 700; font-size: 14px; color: var(--dark); }
+  .report-card-date { font-size: 11px; color: #999; }
+  .report-card-meta { display: flex; gap: 12px; flex-wrap: wrap; }
+  .report-card-meta span { font-size: 12px; color: #666; }
+  .badge { display: inline-block; padding: 2px 8px; border-radius: 4px; font-size: 11px; font-weight: 700; color: #fff; }
+  .badge-red { background: var(--status-red); }
+  .badge-amber { background: var(--amber); }
+  .badge-green { background: var(--green); }
+  .empty-state { text-align: center; padding: 60px 20px; color: #aaa; }
+  .empty-state p { font-size: 14px; margin-top: 8px; }
+ 
   /* ── MODAL ── */
-  .modal-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.6); z-index: 999; display: flex; align-items: flex-end; justify-content: center; }
-  .modal { background: #fff; border-radius: 16px 16px 0 0; padding: 24px 20px 40px; max-width: 500px; width: 100%; }
-  .modal h2 { font-size: 17px; color: var(--dark); margin-bottom: 8px; }
-  .modal p { font-size: 13px; color: #666; line-height: 1.6; margin-bottom: 14px; }
-  .modal-step { display: flex; gap: 12px; align-items: flex-start; margin-bottom: 12px; padding: 12px; background: #fafafa; border-radius: 8px; }
-  .modal-step-num { background: var(--red); color: #fff; width: 26px; height: 26px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 700; flex-shrink: 0; }
-  .modal-step-text { font-size: 13px; color: var(--dark); line-height: 1.5; }
-  .modal-close { width: 100%; padding: 14px; background: var(--red); color: #fff; border: none; border-radius: 8px; font-size: 15px; font-weight: 700; cursor: pointer; font-family: inherit; margin-top: 8px; }
+  .modal-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.6); z-index: 999; overflow-y: auto; padding: 20px; }
+  .modal { background: #fff; border-radius: 12px; max-width: 700px; margin: 0 auto; overflow: hidden; }
+  .modal-head { background: var(--red); padding: 20px 24px; display: flex; justify-content: space-between; align-items: center; }
+  .modal-head h3 { color: #fff; font-size: 15px; }
+  .modal-close-btn { background: rgba(255,255,255,0.2); color: #fff; border: none; width: 30px; height: 30px; border-radius: 50%; font-size: 16px; cursor: pointer; display: flex; align-items: center; justify-content: center; }
+  .modal-body { padding: 20px 24px; }
+  .modal-section { margin-bottom: 20px; }
+  .modal-section h4 { font-size: 12px; font-weight: 700; color: var(--dark-red); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 10px; padding-bottom: 6px; border-bottom: 2px solid var(--red); }
+  .modal-row { display: flex; gap: 8px; margin-bottom: 6px; font-size: 13px; }
+  .modal-row-label { font-weight: 700; color: #555; min-width: 130px; flex-shrink: 0; }
+  .modal-row-value { color: var(--dark); }
+  .modal-item { background: var(--light); border-radius: 6px; padding: 10px 12px; margin-bottom: 8px; font-size: 13px; }
+  .modal-item-area { font-weight: 700; color: var(--green); font-size: 11px; text-transform: uppercase; letter-spacing: 0.04em; margin-bottom: 3px; }
+  .modal-actions { padding: 16px 24px; background: #fafafa; border-top: 1px solid #eee; display: flex; gap: 10px; justify-content: flex-end; }
+ 
+  /* ── INSTALL BANNER ── */
+  .install-banner { background: #1A3A5C; border-radius: 8px; padding: 12px 14px; display: flex; align-items: center; gap: 10px; margin-bottom: 14px; }
+  .install-banner-text { flex: 1; }
+  .install-banner-text h3 { font-size: 12px; color: #fff; margin-bottom: 2px; }
+  .install-banner-text p { font-size: 10px; color: rgba(255,255,255,0.65); }
+  .install-banner-btn { background: var(--yellow); color: #333; border: none; padding: 7px 12px; border-radius: 6px; font-size: 11px; font-weight: 700; cursor: pointer; font-family: inherit; flex-shrink: 0; }
+ 
+  /* ── MODAL INSTALL ── */
+  .imodal-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.6); z-index: 9999; display: flex; align-items: flex-end; justify-content: center; }
+  .imodal { background: #fff; border-radius: 16px 16px 0 0; padding: 24px 20px 40px; max-width: 500px; width: 100%; }
+  .imodal h2 { font-size: 17px; color: var(--dark); margin-bottom: 8px; }
+  .imodal p { font-size: 13px; color: #666; margin-bottom: 14px; }
+  .imodal-step { display: flex; gap: 12px; align-items: flex-start; margin-bottom: 10px; padding: 10px 12px; background: #fafafa; border-radius: 8px; }
+  .imodal-num { background: var(--red); color: #fff; width: 24px; height: 24px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 700; flex-shrink: 0; }
+  .imodal-text { font-size: 13px; color: var(--dark); line-height: 1.5; }
+  .imodal-close { width: 100%; padding: 14px; background: var(--red); color: #fff; border: none; border-radius: 8px; font-size: 15px; font-weight: 700; cursor: pointer; font-family: inherit; margin-top: 12px; }
+ 
+  .loading-overlay { position: fixed; inset: 0; background: rgba(255,255,255,0.9); z-index: 9998; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 14px; }
+  .spinner { width: 40px; height: 40px; border: 4px solid #eee; border-top-color: var(--red); border-radius: 50%; animation: spin 0.8s linear infinite; }
+  @keyframes spin { to { transform: rotate(360deg); } }
+  .loading-text { font-size: 14px; color: #666; font-weight: 600; }
 </style>
 </head>
 <body>
-
-<div class="app-header">
-  <div class="header-inner">
-    <div class="logo-block">
-      <div class="logo-name">AMANDLA</div>
-      <div><span class="logo-tag">PROTECTION SERVICES</span></div>
-      <div class="logo-impi">/ IMPI \</div>
-    </div>
-    <div class="header-text">
-      <h1>Report Builder</h1>
-      <p>Amandla Protection Services</p>
-      <div class="progress-bar"><div class="progress-fill" id="progressFill" style="width:16%"></div></div>
-    </div>
-  </div>
-</div>
-
-<div class="container" id="app"></div>
-
+ 
+<div id="app"></div>
+ 
 <script>
 // ══════════════════════════════════════════════
-//  PWA REGISTRATION
+//  SUPABASE CONFIG
 // ══════════════════════════════════════════════
-if ("serviceWorker" in navigator) {
-  window.addEventListener("load", () => navigator.serviceWorker.register("sw.js", {scope: "/impi-technical-reports/"}));
-}
-
+const SUPA_URL = "https://iwghrtughgmejdsareww.supabase.co";
+const SUPA_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Iml3Z2hydHVnaGdtZWpkc2FyZXd3Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzYyNzQ2MDcsImV4cCI6MjA5MTg1MDYwN30.swTSbFLMg3rYTIUbkXof6STjtg0dCdXlrHbm0elit_Y";
+ 
+const supa = {
+  async query(table, opts={}) {
+    let url = `${SUPA_URL}/rest/v1/${table}?`;
+    if(opts.select) url += `select=${opts.select}&`;
+    if(opts.filter) url += `${opts.filter}&`;
+    if(opts.order) url += `order=${opts.order}&`;
+    if(opts.limit) url += `limit=${opts.limit}&`;
+    const r = await fetch(url, { headers: { apikey: SUPA_KEY, Authorization: `Bearer ${SUPA_KEY}`, "Content-Type": "application/json" }});
+    return r.json();
+  },
+  async insert(table, data) {
+    const r = await fetch(`${SUPA_URL}/rest/v1/${table}`, {
+      method: "POST",
+      headers: { apikey: SUPA_KEY, Authorization: `Bearer ${SUPA_KEY}`, "Content-Type": "application/json", Prefer: "return=representation" },
+      body: JSON.stringify(data)
+    });
+    return r.json();
+  },
+  async signIn(email, password) {
+    const r = await fetch(`${SUPA_URL}/auth/v1/token?grant_type=password`, {
+      method: "POST",
+      headers: { apikey: SUPA_KEY, "Content-Type": "application/json" },
+      body: JSON.stringify({ email, password })
+    });
+    return r.json();
+  },
+  async signOut(token) {
+    await fetch(`${SUPA_URL}/auth/v1/logout`, {
+      method: "POST",
+      headers: { apikey: SUPA_KEY, Authorization: `Bearer ${token}` }
+    });
+  }
+};
+ 
 // ══════════════════════════════════════════════
-//  STATE
+//  APP STATE
 // ══════════════════════════════════════════════
+let APP_MODE = "form"; // "form" | "admin-login" | "admin"
+let ADMIN_TOKEN = localStorage.getItem("impi_admin_token") || null;
+let ADMIN_EMAIL = localStorage.getItem("impi_admin_email") || null;
 let currentStep = 0;
-const STEPS = ["Report Info","Summary","Faults","Work Done","Outstanding","Actions"];
+ 
+const STEPS = ["Your Info","Report Info","Summary","Faults","Work Done","Outstanding","Actions","Review"];
 const REPORT_TYPES = ["Daily Progress Report","Daily Site Report & Sign-Off Meeting","Weekly Progress Report","Snag / Defect Report","Handover Report","Incident Report"];
 const PROJ_STATUSES = ["In Progress","On Track","At Risk","Installation Complete — Awaiting Final Sign-Off","Completed","On Hold"];
 const FAULT_STATUSES = ["Outstanding","Resolved","In Progress","Deferred"];
 const PRIORITIES = ["High","Medium","Low"];
-
+ 
 const today = new Date();
 const dateStr = today.toLocaleDateString("en-ZA", { weekday:"long", year:"numeric", month:"long", day:"numeric" });
-
+ 
 function uid() { return Math.random().toString(36).slice(2,8); }
 function newFault()  { return { id:uid(), location:"", description:"", status:"Outstanding" }; }
 function newWork()   { return { id:uid(), area:"", description:"" }; }
 function newOut()    { return { id:uid(), description:"" }; }
 function newAction() { return { id:uid(), action:"", owner:"", due:"", priority:"High" }; }
-
-let S = {
-  reportType:"Daily Site Report & Sign-Off Meeting", reportDate:dateStr,
-  projectName:"", projectManager:"", siteClient:"", clientContact:"",
-  preparedBy:"", projectStatus:"In Progress", summary:"",
-  faults:[newFault()], workDone:[newWork()], outstanding:[newOut()], actions:[newAction()],
-};
-
+ 
+function freshState() {
+  return {
+    techName:"", techEmail:"",
+    reportType:"Daily Site Report & Sign-Off Meeting", reportDate:dateStr,
+    projectName:"", projectManager:"", siteClient:"", clientContact:"",
+    projectStatus:"In Progress", summary:"",
+    faults:[newFault()], workDone:[newWork()], outstanding:[newOut()], actions:[newAction()],
+  };
+}
+let S = freshState();
+ 
 // ══════════════════════════════════════════════
 //  DOM HELPERS
 // ══════════════════════════════════════════════
@@ -207,76 +254,87 @@ function el(tag, attrs={}, ...kids) {
   Object.entries(attrs).forEach(([k,v]) => {
     if(k==="class") e.className=v;
     else if(k==="style") e.style.cssText=v;
-    else if(k.startsWith("on")) e.addEventListener(k.slice(2),v);
+    else if(k.startsWith("on")) e.addEventListener(k.slice(2).toLowerCase(),v);
     else e.setAttribute(k,v);
   });
   kids.forEach(k => { if(k!=null) typeof k==="string" ? e.appendChild(document.createTextNode(k)) : e.appendChild(k); });
   return e;
 }
-function mkInput(val,ph,cb) {
-  const i=el("input",{type:"text",value:val,placeholder:ph||""}); i.addEventListener("input",e=>cb(e.target.value)); return i;
+function mkInput(val,ph,type,cb) {
+  const i=el("input",{type:type||"text",value:val,placeholder:ph||""}); i.addEventListener("input",e=>cb(e.target.value)); return i;
 }
 function mkSelect(opts,val,cb) {
   const s=el("select"); opts.forEach(o=>{const op=el("option",{value:o},o); if(o===val)op.selected=true; s.appendChild(op);}); s.addEventListener("change",e=>cb(e.target.value)); return s;
 }
-function mkTextarea(val,ph,rows,cb) {
-  const t=el("textarea",{placeholder:ph||"",rows:rows||3},); t.value=val; t.addEventListener("input",e=>cb(e.target.value)); return t;
+function mkTA(val,ph,rows,cb) {
+  const t=el("textarea",{placeholder:ph||"",rows:rows||3}); t.value=val; t.addEventListener("input",e=>cb(e.target.value)); return t;
 }
 function mkField(label,input,hint) {
-  const lbl=el("label",{},label);
-  const w=el("div",{"class":"field"},lbl,input);
-  if(hint){const h=el("div",{"class":"hint"},hint);w.appendChild(h);}
+  const w=el("div",{"class":"field"},el("label",{},label),input);
+  if(hint) w.appendChild(el("div",{"class":"hint"},hint));
   return w;
 }
 function mkGrid(cls,...kids) { const g=el("div",{"class":cls}); kids.forEach(k=>{if(k)g.appendChild(k);}); return g; }
 function mkCard(title,color) {
   const head=el("div",{"class":"card-head"},title); head.style.background=color;
   const body=el("div",{"class":"card-body"}); body.style.borderColor=color;
-  const wrap=el("div",{"class":"card"},head,body);
+  const wrap=el("div",{},head,body);
   return {wrap,body};
 }
 function mkNavFooter(backCb,nextLabel,nextCb) {
   const f=el("div",{"class":"nav-footer"});
-  if(backCb){const b=el("button",{"class":"btn btn-ghost","onclick":backCb},"← Back");f.appendChild(b);}
-  if(nextCb){const b=el("button",{"class":"btn btn-primary","onclick":nextCb},nextLabel||"Next →");f.appendChild(b);}
+  if(backCb) f.appendChild(el("button",{"class":"btn btn-ghost","onclick":backCb},"← Back"));
+  if(nextCb) f.appendChild(el("button",{"class":"btn btn-primary","onclick":nextCb},nextLabel||"Next →"));
   return f;
 }
-function mkAddBtn(label,cb) {
-  const b=el("button",{"class":"btn-add","onclick":cb},el("span",{style:"font-size:16px"},"+")," "+label); return b;
+function mkAddBtn(label,cb) { return el("button",{"class":"btn-add","onclick":cb},el("span",{style:"font-size:16px"},"+")," "+label); }
+function mkRemoveBtn(cb) { return el("button",{"class":"btn-remove","onclick":cb},"remove"); }
+function showLoading(text) {
+  const d=el("div",{"class":"loading-overlay"},el("div",{"class":"spinner"}),el("div",{"class":"loading-text"},text||"Loading…"));
+  d.id="loadingOverlay"; document.body.appendChild(d);
 }
-function mkRemoveBtn(cb) {
-  const b=el("button",{"class":"btn-remove","onclick":cb},"remove"); return b;
+function hideLoading() { const d=document.getElementById("loadingOverlay"); if(d) d.remove(); }
+function esc(s){ return s?String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;"):""; }
+ 
+// ══════════════════════════════════════════════
+//  FORM STEPS
+// ══════════════════════════════════════════════
+function stepTechInfo() {
+  const {wrap,body}=mkCard("Your Details","#CC1C1C");
+  body.appendChild(el("div",{style:"background:#E8F5E9;border-left:4px solid #1E7C4A;padding:10px 12px;border-radius:4px;font-size:12px;color:#3A3A3A;margin-bottom:16px"},"Fill in your details below. These will be attached to your report so management knows who submitted it."));
+  body.appendChild(mkField("Your Full Name", mkInput(S.techName,"e.g. John Dlamini","text",v=>S.techName=v)));
+  body.appendChild(mkField("Your Email Address", mkInput(S.techEmail,"e.g. john@impi-secure.co.za","email",v=>S.techEmail=v)));
+  body.appendChild(mkNavFooter(null,"Next: Report Info →",()=>{
+    if(!S.techName.trim()){alert("Please enter your name.");return;}
+    if(!S.techEmail.trim()||!S.techEmail.includes("@")){alert("Please enter a valid email.");return;}
+    goTo(1);
+  }));
+  return wrap;
 }
-
-// ══════════════════════════════════════════════
-//  STEPS
-// ══════════════════════════════════════════════
-function step0() {
+ 
+function stepReportInfo() {
   const {wrap,body}=mkCard("Report Information","#CC1C1C");
   body.appendChild(mkGrid("grid-2",
     mkField("Report Type",mkSelect(REPORT_TYPES,S.reportType,v=>S.reportType=v)),
-    mkField("Report Date",mkInput(S.reportDate,"e.g. Wednesday 15 April 2026",v=>S.reportDate=v)),
-    mkField("Project Name",mkInput(S.projectName,"e.g. CCTV Add-On — Windjammers",v=>S.projectName=v)),
-    mkField("Project Manager",mkInput(S.projectManager,"Full name",v=>S.projectManager=v)),
-    mkField("Site / Client",mkInput(S.siteClient,"e.g. Windjammers Restaurant",v=>S.siteClient=v)),
-    mkField("Client Contact",mkInput(S.clientContact,"e.g. Maryke",v=>S.clientContact=v)),
-    mkField("Prepared By",mkInput(S.preparedBy,"Your name",v=>S.preparedBy=v)),
-    mkField("Project Status",mkSelect(PROJ_STATUSES,S.projectStatus,v=>S.projectStatus=v)),
+    mkField("Report Date",mkInput(S.reportDate,"Date","text",v=>S.reportDate=v)),
+    mkField("Project Name",mkInput(S.projectName,"e.g. CCTV Add-On",  "text",v=>S.projectName=v)),
+    mkField("Project Manager",mkInput(S.projectManager,"Full name","text",v=>S.projectManager=v)),
+    mkField("Site / Client",mkInput(S.siteClient,"e.g. Windjammers","text",v=>S.siteClient=v)),
+    mkField("Client Contact",mkInput(S.clientContact,"e.g. Maryke","text",v=>S.clientContact=v)),
   ));
-  body.appendChild(mkNavFooter(null,"Next: Summary →",()=>goTo(1)));
+  body.appendChild(mkField("Project Status",mkSelect(PROJ_STATUSES,S.projectStatus,v=>S.projectStatus=v)));
+  body.appendChild(mkNavFooter(()=>goTo(0),"Next: Summary →",()=>goTo(2)));
   return wrap;
 }
-
-function step1() {
+ 
+function stepSummary() {
   const {wrap,body}=mkCard("Executive Summary","#CC1C1C");
-  body.appendChild(mkField("Your Notes",
-    mkTextarea(S.summary,"Write rough notes or bullet points here. These will appear in the report summary section.\n\ne.g.\n• Sign-off meeting held with Maryke\n• Installation complete\n• 2 cameras back online\n• Client happy overall",10,v=>S.summary=v),
-    "Keep it simple — bullet points or short sentences are fine."));
-  body.appendChild(mkNavFooter(()=>goTo(0),"Next: Faults →",()=>goTo(2)));
+  body.appendChild(mkField("Summary Notes", mkTA(S.summary,"Write rough notes or bullet points — e.g.\n• Sign-off meeting held with Maryke\n• 2 cameras back online\n• Client happy overall",9,v=>S.summary=v),"Short notes are fine."));
+  body.appendChild(mkNavFooter(()=>goTo(1),"Next: Faults →",()=>goTo(3)));
   return wrap;
 }
-
-function step2() {
+ 
+function stepFaults() {
   const {wrap,body}=mkCard("Faults & Problems Reported","#C0392B");
   const list=el("div");
   function render() {
@@ -288,21 +346,21 @@ function step2() {
       if(S.faults.length>1) hdr.appendChild(mkRemoveBtn(()=>{S.faults=S.faults.filter(x=>x.id!==f.id);render();}));
       box.appendChild(hdr);
       box.appendChild(mkGrid("grid-2",
-        mkField("Location",mkInput(f.location,"e.g. Main Gate",v=>{f.location=v;})),
+        mkField("Location",mkInput(f.location,"e.g. Main Gate","text",v=>{f.location=v;})),
         mkField("Status",mkSelect(FAULT_STATUSES,f.status,v=>{f.status=v;})),
       ));
-      box.appendChild(mkField("Description",mkTextarea(f.description,"Describe the fault or problem…",2,v=>{f.description=v;})));
+      box.appendChild(mkField("Description",mkTA(f.description,"Describe the fault…",2,v=>{f.description=v;})));
       list.appendChild(box);
     });
   }
   render();
   body.appendChild(list);
   body.appendChild(mkAddBtn("Add fault",()=>{S.faults.push(newFault());render();}));
-  body.appendChild(mkNavFooter(()=>goTo(1),"Next: Work Done →",()=>goTo(3)));
+  body.appendChild(mkNavFooter(()=>goTo(2),"Next: Work Done →",()=>goTo(4)));
   return wrap;
 }
-
-function step3() {
+ 
+function stepWork() {
   const {wrap,body}=mkCard("Work Performed Today","#1E7C4A");
   const list=el("div");
   function render() {
@@ -313,19 +371,19 @@ function step3() {
       hdr.appendChild(el("span",{"class":"item-lbl",style:"color:#1E7C4A"},"Work Item "+(i+1)));
       if(S.workDone.length>1) hdr.appendChild(mkRemoveBtn(()=>{S.workDone=S.workDone.filter(x=>x.id!==w.id);render();}));
       box.appendChild(hdr);
-      box.appendChild(mkField("Area / Location",mkInput(w.area,"e.g. Last Chance — Camera Reinstallation",v=>{w.area=v;})));
-      box.appendChild(mkField("Work Description",mkTextarea(w.description,"Describe what was done…",3,v=>{w.description=v;})));
+      box.appendChild(mkField("Area / Location",mkInput(w.area,"e.g. Last Chance — Camera Reinstallation","text",v=>{w.area=v;})));
+      box.appendChild(mkField("Work Description",mkTA(w.description,"Describe what was done…",3,v=>{w.description=v;})));
       list.appendChild(box);
     });
   }
   render();
   body.appendChild(list);
   body.appendChild(mkAddBtn("Add work item",()=>{S.workDone.push(newWork());render();}));
-  body.appendChild(mkNavFooter(()=>goTo(2),"Next: Outstanding →",()=>goTo(4)));
+  body.appendChild(mkNavFooter(()=>goTo(3),"Next: Outstanding →",()=>goTo(5)));
   return wrap;
 }
-
-function step4() {
+ 
+function stepOutstanding() {
   const {wrap,body}=mkCard("Outstanding Work & Client Requests","#B86C00");
   const list=el("div");
   function render() {
@@ -333,7 +391,7 @@ function step4() {
     S.outstanding.forEach((o,i)=>{
       const row=el("div",{"class":"out-row"});
       row.appendChild(el("div",{"class":"out-num"},String(i+1)));
-      const ta=el("div",{style:"flex:1"}); ta.appendChild(mkTextarea(o.description,"Describe the outstanding item or client request…",2,v=>{o.description=v;}));
+      const ta=el("div",{style:"flex:1"}); ta.appendChild(mkTA(o.description,"Describe the outstanding item…",2,v=>{o.description=v;}));
       row.appendChild(ta);
       if(S.outstanding.length>1){const rb=mkRemoveBtn(()=>{S.outstanding=S.outstanding.filter(x=>x.id!==o.id);render();}); rb.style.marginTop="8px"; row.appendChild(rb);}
       list.appendChild(row);
@@ -341,191 +399,528 @@ function step4() {
   }
   render();
   body.appendChild(list);
-  body.appendChild(mkAddBtn("Add outstanding item",()=>{S.outstanding.push(newOut());render();}));
-  body.appendChild(mkNavFooter(()=>goTo(3),"Next: Actions →",()=>goTo(5)));
+  body.appendChild(mkAddBtn("Add item",()=>{S.outstanding.push(newOut());render();}));
+  body.appendChild(mkNavFooter(()=>goTo(4),"Next: Actions →",()=>goTo(6)));
   return wrap;
 }
-
-function step5() {
+ 
+function stepActions() {
   const {wrap,body}=mkCard("Action Items & Next Steps","#CC1C1C");
   const list=el("div");
-  function renderActions() {
+  function render() {
     list.innerHTML="";
     S.actions.forEach((a,i)=>{
       const box=el("div",{"class":"item-box"});
       const hdr=el("div",{"class":"item-box-hdr"});
       hdr.appendChild(el("span",{"class":"item-lbl",style:"color:#CC1C1C"},"Action "+(i+1)));
-      if(S.actions.length>1) hdr.appendChild(mkRemoveBtn(()=>{S.actions=S.actions.filter(x=>x.id!==a.id);renderActions();}));
+      if(S.actions.length>1) hdr.appendChild(mkRemoveBtn(()=>{S.actions=S.actions.filter(x=>x.id!==a.id);render();}));
       box.appendChild(hdr);
-      box.appendChild(mkField("Action",mkInput(a.action,"e.g. Source Fisheye camera for Garage Area",v=>{a.action=v;})));
+      box.appendChild(mkField("Action",mkInput(a.action,"e.g. Source Fisheye camera","text",v=>{a.action=v;})));
       box.appendChild(mkGrid("grid-3",
-        mkField("Owner",mkInput(a.owner,"e.g. PM",v=>{a.owner=v;})),
-        mkField("Due Date",mkInput(a.due,"e.g. 15 Apr",v=>{a.due=v;})),
+        mkField("Owner",mkInput(a.owner,"e.g. PM","text",v=>{a.owner=v;})),
+        mkField("Due Date",mkInput(a.due,"e.g. 15 Apr","text",v=>{a.due=v;})),
         mkField("Priority",mkSelect(PRIORITIES,a.priority,v=>{a.priority=v;})),
       ));
       list.appendChild(box);
     });
   }
-  renderActions();
+  render();
   body.appendChild(list);
-  body.appendChild(mkAddBtn("Add action item",()=>{S.actions.push(newAction());renderActions();}));
-
-  // Generate section
-  const genArea=el("div",{style:"margin-top:20px;border-top:1px solid #eee;padding-top:18px"});
-  const errBox=el("div",{"class":"error-box",style:"display:none"});
-  genArea.appendChild(errBox);
-
-  const genBtn=el("button",{"class":"btn-generate"},"Generate Report");
-  const hint=el("div",{style:"font-size:11px;color:#999;text-align:center;margin-top:8px"},"Generates a print-ready branded report.");
-  genArea.appendChild(genBtn); genArea.appendChild(hint);
-
-  const successDiv=el("div",{"class":"success-banner",style:"display:none"});
-  const sh3=el("div",{style:"font-weight:700;color:#1E7C4A;font-size:14px;margin-bottom:4px"},"Report ready!");
-  const sp=el("div",{style:"font-size:12px;color:#555;margin-bottom:10px"},"Tap the button below to open and print / save as PDF.");
-  const sActions=el("div",{"class":"success-actions"});
-  const openBtn=el("button",{"class":"btn btn-green"},"Open Report");
-  const newBtn=el("button",{"class":"btn btn-ghost"},"New Report");
-  newBtn.addEventListener("click",()=>{ if(confirm("Start a new report? Current data will be cleared.")){S={reportType:"Daily Site Report & Sign-Off Meeting",reportDate:dateStr,projectName:"",projectManager:"",siteClient:"",clientContact:"",preparedBy:"",projectStatus:"In Progress",summary:"",faults:[newFault()],workDone:[newWork()],outstanding:[newOut()],actions:[newAction()]};goTo(0);} });
-  sActions.appendChild(openBtn); sActions.appendChild(newBtn);
-  successDiv.appendChild(sh3); successDiv.appendChild(sp); successDiv.appendChild(sActions);
-  genArea.appendChild(successDiv);
-
-  genBtn.addEventListener("click",()=>{
-    genBtn.disabled=true; genBtn.textContent="Building…";
-    errBox.style.display="none"; successDiv.style.display="none";
-    try {
-      const html=buildReport();
-      const blob=new Blob([html],{type:"text/html"});
-      const url=URL.createObjectURL(blob);
-      openBtn.onclick=()=>window.open(url,"_blank");
-      successDiv.style.display="block";
-    } catch(e) {
-      errBox.textContent="Error: "+e.message; errBox.style.display="block";
-    } finally { genBtn.disabled=false; genBtn.textContent="Generate Report"; }
-  });
-
-  body.appendChild(genArea);
-  body.appendChild(mkNavFooter(()=>goTo(4),null,null));
+  body.appendChild(mkAddBtn("Add action",()=>{S.actions.push(newAction());render();}));
+  body.appendChild(mkNavFooter(()=>goTo(5),"Review & Submit →",()=>goTo(7)));
   return wrap;
 }
-
-// ══════════════════════════════════════════════
-//  BUILD REPORT
-// ══════════════════════════════════════════════
-function esc(s){ return s?String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;"):""; }
-
-function buildReport(){
-  const workCount=S.workDone.filter(w=>w.description).length;
-  const outCount=S.outstanding.filter(o=>o.description).length;
-  const statusColor=S.projectStatus.includes("Complete")||S.projectStatus==="Completed"?"#1E7C4A":S.projectStatus.includes("Risk")||S.projectStatus==="On Hold"?"#C0392B":"#B86C00";
-
-  const faultRows=S.faults.map((f,i)=>{
-    const sc=f.status==="Resolved"?"#1E7C4A":f.status==="Outstanding"?"#B86C00":"#CC1C1C";
-    return `<tr><td style="padding:8px 10px;border:1px solid #ddd;font-size:12px;color:#666;text-align:center">F-${String(i+1).padStart(2,"0")}</td><td style="padding:8px 10px;border:1px solid #ddd;font-size:12px;font-weight:700">${esc(f.location)||"—"}</td><td style="padding:8px 10px;border:1px solid #ddd;font-size:12px">${esc(f.description)||"—"}</td><td style="padding:8px 10px;border:1px solid #ddd;text-align:center"><span style="background:${sc};color:#fff;padding:3px 10px;border-radius:4px;font-size:11px;font-weight:700">${esc(f.status)}</span></td></tr>`;
-  }).join("");
-
-  const workItems=S.workDone.filter(w=>w.description).map(w=>`<div style="margin-bottom:12px;padding:12px 16px;background:#E8F5E9;border-left:5px solid #1E7C4A;border-radius:4px">${w.area?`<div style="font-weight:700;font-size:12px;color:#1E7C4A;margin-bottom:5px;text-transform:uppercase;letter-spacing:0.04em">${esc(w.area)}</div>`:""}<div style="font-size:12px;color:#3A3A3A;line-height:1.7">${esc(w.description)}</div></div>`).join("");
-
-  const outItems=S.outstanding.filter(o=>o.description).map((o,i)=>`<div style="display:flex;gap:12px;margin-bottom:12px;align-items:flex-start"><span style="background:#B86C00;color:#fff;min-width:24px;height:24px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;flex-shrink:0;margin-top:2px">${i+1}</span><span style="font-size:12px;color:#3A3A3A;line-height:1.7;padding-top:3px">${esc(o.description)}</span></div>`).join("");
-
-  const actionRows=S.actions.map((a,i)=>{const pc=a.priority==="High"?"#C0392B":a.priority==="Medium"?"#B86C00":"#1E7C4A";return`<tr><td style="padding:8px 10px;border:1px solid #ddd;font-size:12px;color:#666;text-align:center">${i+1}</td><td style="padding:8px 10px;border:1px solid #ddd;font-size:12px">${esc(a.action)||"—"}</td><td style="padding:8px 10px;border:1px solid #ddd;font-size:12px;background:#f7f7f7">${esc(a.owner)||"TBC"}</td><td style="padding:8px 10px;border:1px solid #ddd;font-size:12px;text-align:center">${esc(a.due)||"TBC"}</td><td style="padding:8px 10px;border:1px solid #ddd;text-align:center;font-weight:700;color:${pc};font-size:12px">${esc(a.priority)}</td></tr>`;}).join("");
-
-  const summaryHTML=(S.summary||"Project progressing as planned.").split(/\n\n+/).map(p=>`<p style="font-size:12px;line-height:1.8;margin:0 0 12px;color:#3A3A3A">${esc(p).replace(/\n/g,"<br>")}</p>`).join("");
-
-  return `<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>IMPI – ${esc(S.reportType)} – ${esc(S.reportDate)}</title>
-<style>*{box-sizing:border-box;margin:0;padding:0}body{font-family:Arial,sans-serif;background:#EBEBEB;color:#3A3A3A}@media print{body{background:#fff}.no-print{display:none!important}.page{box-shadow:none!important;margin:0!important;max-width:100%!important}}.page{max-width:920px;margin:24px auto;background:#fff;box-shadow:0 2px 20px rgba(0,0,0,.12)}.header{display:flex;align-items:stretch;border-bottom:4px solid #CC1C1C}.header-logo{padding:20px 24px;border-right:3px solid #CC1C1C;display:flex;align-items:center}.logo-name{font-size:22px;font-weight:900;color:#CC1C1C;line-height:1}.logo-tag{display:inline-block;background:#F5C200;color:#333;font-size:9px;font-weight:700;padding:2px 7px;letter-spacing:.06em;margin:4px 0}.logo-impi{font-size:15px;font-weight:900;color:#CC1C1C;letter-spacing:1px}.header-info{flex:1;padding:18px 24px}.company-name{font-size:16px;font-weight:700;color:#CC1C1C}.company-sub{font-size:10px;color:#999;margin-top:2px}.report-title{font-size:14px;font-weight:700;color:#3A3A3A;margin-top:10px}.report-date{font-size:12px;color:#CC1C1C;font-weight:700;margin-top:3px}.confidential{display:inline-block;background:#CC1C1C;color:#fff;font-size:10px;font-weight:700;padding:2px 8px;border-radius:3px;margin-top:5px;letter-spacing:.08em}.body{padding:28px 32px}.meta-table{width:100%;border-collapse:collapse;margin-bottom:24px;font-size:12px}.meta-table td{padding:8px 12px;border:1px solid #EEE}.meta-table td:first-child{font-weight:700;color:#8B0000;background:#F7F7F7;width:170px}.stats{display:flex;gap:12px;margin-bottom:24px}.stat{flex:1;padding:16px 12px;border-radius:6px;text-align:center;border-top:4px solid}.stat-n{font-size:38px;font-weight:700;line-height:1;margin-bottom:5px}.stat-l{font-size:11px;color:#666}.sec-head{background:#CC1C1C;color:#fff;font-size:12px;font-weight:700;letter-spacing:.08em;padding:9px 14px;border-radius:4px 4px 0 0;text-transform:uppercase;margin-top:24px}.sec-body{border:1.5px solid #CC1C1C;border-top:none;border-radius:0 0 4px 4px;padding:18px}.intro{font-size:12px;color:#666;margin:0 0 14px;line-height:1.6}table.dt{width:100%;border-collapse:collapse;font-size:12px}table.dt th{background:#CC1C1C;color:#fff;padding:9px 10px;text-align:left;font-size:11px;font-weight:700}table.dt tr:nth-child(even) td{background:#fafafa}.out-wrap{background:#FFF8E1;border-left:5px solid #B86C00;padding:16px 18px;border-radius:4px}.sign-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:8px}.sign-box{border:1px solid #ddd;padding:20px;border-radius:4px}.sign-title{font-size:12px;font-weight:700;color:#CC1C1C;margin-bottom:18px}.sign-row{margin-bottom:14px}.sign-lbl{font-size:10px;color:#aaa;margin-bottom:3px}.sign-line{border-bottom:1px solid #ccc;padding-bottom:8px}.note{font-size:11px;color:#B86C00;font-style:italic;margin:0 0 14px}.footer{background:#f7f7f7;border-top:3px solid #CC1C1C;padding:10px 32px;display:flex;justify-content:space-between;align-items:center}.footer-text{font-size:10px;color:#999}.footer-conf{font-size:10px;color:#CC1C1C;font-weight:700}.print-btn{position:fixed;bottom:24px;right:24px;background:#CC1C1C;color:#fff;border:none;padding:13px 26px;border-radius:8px;font-size:14px;font-weight:700;cursor:pointer;font-family:Arial,sans-serif;box-shadow:0 4px 14px rgba(204,28,28,.4);z-index:999}</style></head><body>
-<button class="print-btn no-print" onclick="window.print()">Print / Save PDF</button>
-<div class="page">
-<div class="header"><div class="header-logo"><div><div class="logo-name">AMANDLA</div><div><span class="logo-tag">PROTECTION SERVICES</span></div><div class="logo-impi">/ IMPI \\</div></div></div><div class="header-info"><div class="company-name">IMPI Protection Agency (Pty) Ltd</div><div class="company-sub">10 Kosmos Crescent, Rynoue AH, Roodeplaat &nbsp;|&nbsp; 012 543 0640 &nbsp;|&nbsp; info@impi-secure.co.za &nbsp;|&nbsp; www.impi-secure.co.za</div><div class="report-title">${esc(S.reportType).toUpperCase()}</div><div class="report-date">${esc(S.reportDate)}</div><span class="confidential">CONFIDENTIAL</span></div></div>
-<div class="body">
-<table class="meta-table"><tr><td>Report Date</td><td>${esc(S.reportDate)}</td></tr><tr><td>Report Type</td><td>${esc(S.reportType)}</td></tr><tr><td>Project Name</td><td>${esc(S.projectName)||"—"}</td></tr><tr><td>Project Manager</td><td>${esc(S.projectManager)||"—"}</td></tr><tr><td>Site / Client</td><td>${esc(S.siteClient)||"—"}</td></tr><tr><td>Client Contact</td><td>${esc(S.clientContact)||"—"}</td></tr><tr><td>Prepared By</td><td>${esc(S.preparedBy)||"—"}</td></tr><tr><td>Project Status</td><td><strong style="color:${statusColor}">${esc(S.projectStatus)}</strong></td></tr></table>
-<div class="stats"><div class="stat" style="border-top-color:#1E7C4A;background:#E8F5E9"><div class="stat-n" style="color:#1E7C4A">${workCount}</div><div class="stat-l">Works Completed</div></div><div class="stat" style="border-top-color:#C0392B;background:#FFEBEE"><div class="stat-n" style="color:#C0392B">${S.faults.length}</div><div class="stat-l">Faults Reported</div></div><div class="stat" style="border-top-color:#B86C00;background:#FFF8E1"><div class="stat-n" style="color:#B86C00">${outCount}</div><div class="stat-l">Outstanding Items</div></div></div>
-<div class="sec-head">1. Executive Summary</div><div class="sec-body">${summaryHTML}</div>
-<div class="sec-head">2. Faults &amp; Problems Reported</div><div class="sec-body"><p class="intro">The following faults and concerns were reported during the site visit.</p><table class="dt"><thead><tr><th style="width:60px">Ref</th><th style="width:150px">Location</th><th>Description</th><th style="width:120px">Status</th></tr></thead><tbody>${faultRows||"<tr><td colspan='4' style='padding:12px;color:#999;text-align:center'>No faults recorded</td></tr>"}</tbody></table></div>
-<div class="sec-head">3. Work Performed on Site Today</div><div class="sec-body"><p class="intro">The following work was carried out on site.</p>${workItems||"<p style='font-size:12px;color:#999'>No work items recorded.</p>"}</div>
-<div class="sec-head">4. Outstanding Work &amp; Client Requests</div><div class="sec-body"><p class="intro">The following items remain outstanding and must be resolved before final sign-off.</p><div class="out-wrap">${outItems||"<p style='font-size:12px;color:#999;margin:0'>No outstanding items recorded.</p>"}</div></div>
-<div class="sec-head">5. Action Items &amp; Next Steps</div><div class="sec-body"><table class="dt"><thead><tr><th style="width:40px">#</th><th>Action</th><th style="width:140px">Owner</th><th style="width:110px">Due Date</th><th style="width:80px">Priority</th></tr></thead><tbody>${actionRows||"<tr><td colspan='5' style='padding:12px;color:#999;text-align:center'>No action items recorded</td></tr>"}</tbody></table></div>
-<div class="sec-head">6. Sign-Off</div><div class="sec-body"><p class="note">Note: Final sign-off is subject to completion of all outstanding items listed above.</p><div class="sign-grid"><div class="sign-box"><div class="sign-title">Prepared By — IMPI / Amandla</div><div class="sign-row"><div class="sign-lbl">Name</div><div class="sign-line"></div></div><div class="sign-row"><div class="sign-lbl">Signature</div><div class="sign-line"></div></div><div class="sign-row"><div class="sign-lbl">Date</div><div class="sign-line"></div></div></div><div class="sign-box"><div class="sign-title">Client Representative${S.clientContact?` (${esc(S.clientContact)})`:""}</div><div class="sign-row"><div class="sign-lbl">Name</div><div class="sign-line"></div></div><div class="sign-row"><div class="sign-lbl">Signature</div><div class="sign-line"></div></div><div class="sign-row"><div class="sign-lbl">Date</div><div class="sign-line"></div></div></div></div></div>
-</div><div class="footer"><span class="footer-text">IMPI Protection Agency (Pty) Ltd &nbsp;|&nbsp; 10 Kosmos Crescent, Rynoue AH, Roodeplaat &nbsp;|&nbsp; 012 543 0640 &nbsp;|&nbsp; info@impi-secure.co.za &nbsp;|&nbsp; www.impi-secure.co.za</span><span class="footer-conf">CONFIDENTIAL</span></div></div></body></html>`;
+ 
+function stepReview() {
+  const {wrap,body}=mkCard("Review & Submit","#1E7C4A");
+ 
+  // Summary preview
+  const rows = [
+    ["Technician", S.techName + " (" + S.techEmail + ")"],
+    ["Report Type", S.reportType],
+    ["Date", S.reportDate],
+    ["Project", S.projectName||"—"],
+    ["Site / Client", S.siteClient||"—"],
+    ["Status", S.projectStatus],
+    ["Faults", S.faults.length + " reported"],
+    ["Work Items", S.workDone.filter(w=>w.description).length + " completed"],
+    ["Outstanding", S.outstanding.filter(o=>o.description).length + " items"],
+    ["Actions", S.actions.filter(a=>a.action).length + " items"],
+  ];
+ 
+  const tbl=el("table",{style:"width:100%;border-collapse:collapse;font-size:13px;margin-bottom:16px"});
+  rows.forEach(([l,v])=>{
+    const tr=el("tr");
+    tr.appendChild(el("td",{style:"padding:7px 10px;font-weight:700;color:#8B0000;background:#f7f7f7;border:1px solid #eee;width:140px"},l));
+    tr.appendChild(el("td",{style:"padding:7px 10px;border:1px solid #eee"},v));
+    tbl.appendChild(tr);
+  });
+  body.appendChild(tbl);
+ 
+  const errBox=el("div",{"class":"error-box",style:"display:none"});
+  body.appendChild(errBox);
+ 
+  const submitBtn=el("button",{"class":"btn-submit"},"Submit Report");
+  submitBtn.addEventListener("click", async ()=>{
+    if(!S.projectName.trim()){alert("Please go back and enter a project name.");return;}
+    submitBtn.disabled=true; submitBtn.textContent="Submitting…";
+    errBox.style.display="none";
+    try {
+      const payload = {
+        tech_name: S.techName, tech_email: S.techEmail,
+        report_type: S.reportType, report_date: S.reportDate,
+        project_name: S.projectName, project_manager: S.projectManager,
+        site_client: S.siteClient, client_contact: S.clientContact,
+        project_status: S.projectStatus, summary: S.summary,
+        faults: JSON.stringify(S.faults),
+        work_done: JSON.stringify(S.workDone),
+        outstanding: JSON.stringify(S.outstanding),
+        actions: JSON.stringify(S.actions),
+        submitted_at: new Date().toISOString()
+      };
+      const result = await supa.insert("reports", payload);
+      if(result && result[0] && result[0].id) {
+        showSuccessScreen();
+      } else {
+        throw new Error(JSON.stringify(result));
+      }
+    } catch(e) {
+      errBox.textContent = "Submission failed: " + e.message + ". Please check your connection and try again.";
+      errBox.style.display="block";
+      submitBtn.disabled=false; submitBtn.textContent="Submit Report";
+    }
+  });
+ 
+  body.appendChild(submitBtn);
+  body.appendChild(el("div",{style:"font-size:11px;color:#999;text-align:center;margin-top:8px"},"Your report will be saved securely and sent to management."));
+  body.appendChild(mkNavFooter(()=>goTo(6),null,null));
+  return wrap;
 }
-
-// ══════════════════════════════════════════════
-//  INSTALL BANNER (iOS)
-// ══════════════════════════════════════════════
-function showInstallBanner() {
-  const isIOS = /iphone|ipad|ipod/i.test(navigator.userAgent);
-  const isStandalone = window.matchMedia("(display-mode: standalone)").matches || window.navigator.standalone;
-  if(!isIOS || isStandalone) return null;
-
-  const banner=el("div",{"class":"install-banner"});
-  banner.appendChild(el("div",{"class":"install-banner-icon"},"📱"));
-  const text=el("div",{"class":"install-banner-text"});
-  text.appendChild(el("h3",{},"Add to Home Screen"));
-  text.appendChild(el("p",{},"Install this app on your iPhone for quick access — works offline too."));
-  banner.appendChild(text);
-  const btn=el("button",{"class":"install-banner-btn"},"How?");
-  btn.addEventListener("click",showInstallModal);
-  banner.appendChild(btn);
-  return banner;
+ 
+function showSuccessScreen() {
+  const app=document.getElementById("app");
+  app.innerHTML="";
+  renderHeader(false);
+ 
+  const container=el("div",{"class":"container"});
+  const screen=el("div",{"class":"success-screen"});
+  screen.appendChild(el("div",{"class":"success-icon"},"✅"));
+  screen.appendChild(el("h2",{},"Report Submitted!"));
+  screen.appendChild(el("p",{},"Your report has been saved successfully. Management has been notified and can view it in the admin dashboard."));
+  const newBtn=el("button",{"class":"btn btn-primary",style:"margin:0 auto"},  "Submit Another Report");
+  newBtn.addEventListener("click",()=>{S=freshState();currentStep=0;render();});
+  screen.appendChild(newBtn);
+  container.appendChild(screen);
+  app.appendChild(container);
 }
-
-function showInstallModal() {
+ 
+// ══════════════════════════════════════════════
+//  ADMIN LOGIN
+// ══════════════════════════════════════════════
+function renderAdminLogin() {
+  const app=document.getElementById("app");
+  app.innerHTML="";
+ 
+  const container=el("div",{"class":"container"});
+  const loginBox=el("div",{"class":"admin-login"});
+  const head=el("div",{"class":"admin-login-head"});
+  head.appendChild(el("h2",{},"Admin Login"));
+  head.appendChild(el("p",{},"IMPI Reports — Management Access"));
+  loginBox.appendChild(head);
+ 
+  const body=el("div",{"class":"admin-login-body"});
+  const emailField=mkField("Email Address",mkInput("","admin@impi-secure.co.za","email",()=>{}));
+  const emailInput=emailField.querySelector("input");
+  const passField=mkField("Password",mkInput("","••••••••","password",()=>{}));
+  const passInput=passField.querySelector("input");
+  const errBox=el("div",{"class":"error-box",style:"display:none"});
+  const loginBtn=el("button",{"class":"btn btn-primary",style:"width:100%;padding:13px;font-size:14px;margin-top:4px"},"Login");
+ 
+  loginBtn.addEventListener("click", async ()=>{
+    const email=emailInput.value.trim();
+    const pass=passInput.value;
+    if(!email||!pass){alert("Please enter email and password.");return;}
+    loginBtn.disabled=true; loginBtn.textContent="Logging in…"; errBox.style.display="none";
+    showLoading("Logging in…");
+    try {
+      const result=await supa.signIn(email, pass);
+      if(result.access_token) {
+        ADMIN_TOKEN=result.access_token;
+        ADMIN_EMAIL=email;
+        localStorage.setItem("impi_admin_token", ADMIN_TOKEN);
+        localStorage.setItem("impi_admin_email", ADMIN_EMAIL);
+        APP_MODE="admin";
+        hideLoading();
+        renderAdminDashboard();
+      } else {
+        throw new Error(result.error_description || result.msg || "Invalid credentials");
+      }
+    } catch(e) {
+      errBox.textContent="Login failed: "+e.message;
+      errBox.style.display="block";
+      loginBtn.disabled=false; loginBtn.textContent="Login";
+      hideLoading();
+    }
+  });
+ 
+  const backBtn=el("button",{"class":"btn btn-ghost",style:"width:100%;margin-top:10px"},"← Back to Report Form");
+  backBtn.addEventListener("click",()=>{APP_MODE="form";render();});
+ 
+  body.appendChild(emailField); body.appendChild(passField);
+  body.appendChild(errBox); body.appendChild(loginBtn); body.appendChild(backBtn);
+  loginBox.appendChild(body);
+  container.appendChild(loginBox);
+  app.appendChild(container);
+}
+ 
+// ══════════════════════════════════════════════
+//  ADMIN DASHBOARD
+// ══════════════════════════════════════════════
+let allReports=[];
+let filteredReports=[];
+let filterText="";
+let filterStatus="";
+ 
+async function renderAdminDashboard() {
+  const app=document.getElementById("app");
+  app.innerHTML="";
+ 
+  // Admin header
+  const adminHead=el("div",{"class":"admin-header"});
+  const headInfo=el("div");
+  headInfo.appendChild(el("h2",{},"IMPI Reports — Admin Dashboard"));
+  headInfo.appendChild(el("p",{},"Logged in as: "+ADMIN_EMAIL));
+  adminHead.appendChild(headInfo);
+  const logoutBtn=el("button",{"class":"btn btn-ghost",style:"font-size:12px;padding:7px 14px"},"Logout");
+  logoutBtn.addEventListener("click", async ()=>{
+    if(ADMIN_TOKEN) await supa.signOut(ADMIN_TOKEN);
+    ADMIN_TOKEN=null; ADMIN_EMAIL=null;
+    localStorage.removeItem("impi_admin_token");
+    localStorage.removeItem("impi_admin_email");
+    APP_MODE="form"; render();
+  });
+  adminHead.appendChild(logoutBtn);
+  app.appendChild(adminHead);
+ 
+  const container=el("div",{"class":"admin-container"});
+  app.appendChild(container);
+ 
+  showLoading("Loading reports…");
+  try {
+    allReports=await supa.query("reports",{select:"*",order:"submitted_at.desc"});
+    if(!Array.isArray(allReports)) allReports=[];
+  } catch(e) { allReports=[]; }
+  hideLoading();
+  filteredReports=[...allReports];
+ 
+  // Stats
+  const statsRow=el("div",{"class":"stats-row"});
+  const total=allReports.length;
+  const outstanding=allReports.filter(r=>r.project_status&&r.project_status.toLowerCase().includes("awaiting")||r.project_status==="At Risk").length;
+  const completed=allReports.filter(r=>r.project_status==="Completed").length;
+  [[total,"Total Reports","#CC1C1C"],[outstanding,"Awaiting Sign-Off","#B86C00"],[completed,"Completed","#1E7C4A"]].forEach(([n,l,c])=>{
+    const card=el("div",{"class":"stat-card"}); card.style.borderTopColor=c;
+    card.appendChild(el("div",{"class":"stat-card-n",style:"color:"+c},String(n)));
+    card.appendChild(el("div",{"class":"stat-card-l"},l));
+    statsRow.appendChild(card);
+  });
+  container.appendChild(statsRow);
+ 
+  // Filters
+  const filterBar=el("div",{"class":"filter-bar"});
+  const searchInput=mkInput(filterText,"Search project, technician, site…","text",v=>{filterText=v;applyFilters();});
+  filterBar.appendChild(mkField("Search",searchInput));
+  const statusSel=mkSelect(["All Statuses",...PROJ_STATUSES],filterStatus||"All Statuses",v=>{filterStatus=v==="All Statuses"?"":v;applyFilters();});
+  filterBar.appendChild(mkField("Filter by Status",statusSel));
+  container.appendChild(filterBar);
+ 
+  // Reports list
+  const listDiv=el("div",{"class":"reports-list"});
+  listDiv.id="reportsList";
+  container.appendChild(listDiv);
+  renderReportsList();
+ 
+  function applyFilters() {
+    filteredReports=allReports.filter(r=>{
+      const matchText=!filterText||(r.project_name||"").toLowerCase().includes(filterText.toLowerCase())||(r.tech_name||"").toLowerCase().includes(filterText.toLowerCase())||(r.site_client||"").toLowerCase().includes(filterText.toLowerCase());
+      const matchStatus=!filterStatus||r.project_status===filterStatus;
+      return matchText&&matchStatus;
+    });
+    renderReportsList();
+  }
+}
+ 
+function renderReportsList() {
+  const listDiv=document.getElementById("reportsList");
+  if(!listDiv) return;
+  listDiv.innerHTML="";
+  if(filteredReports.length===0) {
+    listDiv.appendChild(el("div",{"class":"empty-state"},el("p",{},"No reports found.")));
+    return;
+  }
+  filteredReports.forEach(r=>{
+    const card=el("div",{"class":"report-card"});
+    const top=el("div",{"class":"report-card-top"});
+    top.appendChild(el("div",{"class":"report-card-title"},r.project_name||"Untitled Report"));
+    const d=new Date(r.submitted_at);
+    top.appendChild(el("div",{"class":"report-card-date"},d.toLocaleDateString("en-ZA",{day:"numeric",month:"short",year:"numeric",hour:"2-digit",minute:"2-digit"})));
+    card.appendChild(top);
+    const meta=el("div",{"class":"report-card-meta"});
+    const sc=r.project_status==="Completed"?"badge-green":r.project_status&&r.project_status.includes("Awaiting")?"badge-amber":"badge-red";
+    meta.appendChild(el("span",{"class":"badge "+sc},r.project_status||"In Progress"));
+    meta.appendChild(el("span",{},r.report_type||"Report"));
+    meta.appendChild(el("span",{},"By: "+( r.tech_name||"Unknown")));
+    if(r.site_client) meta.appendChild(el("span",{},"Site: "+r.site_client));
+    card.appendChild(meta);
+    card.addEventListener("click",()=>showReportModal(r));
+    listDiv.appendChild(card);
+  });
+}
+ 
+function showReportModal(r) {
+  const faults=JSON.parse(r.faults||"[]");
+  const work=JSON.parse(r.work_done||"[]");
+  const outstanding=JSON.parse(r.outstanding||"[]");
+  const actions=JSON.parse(r.actions||"[]");
+ 
   const overlay=el("div",{"class":"modal-overlay"});
   const modal=el("div",{"class":"modal"});
-  modal.appendChild(el("h2",{},"Add to Home Screen"));
-  modal.appendChild(el("p",{},"Follow these steps to install the IMPI Report Builder on your iPhone:"));
-  [
-    ["Tap the Share button","Tap the Share icon at the bottom of Safari (the box with an arrow pointing up)."],
-    ["Scroll down","In the share sheet that appears, scroll down to find \"Add to Home Screen\"."],
-    ["Tap Add","Tap \"Add to Home Screen\", then tap \"Add\" in the top right corner."],
-    ["Done!","The IMPI Report Builder icon will appear on your home screen. Tap it to open the app anytime — even without internet."],
-  ].forEach(([title,desc],i)=>{
-    const step=el("div",{"class":"modal-step"});
-    step.appendChild(el("div",{"class":"modal-step-num"},String(i+1)));
-    step.appendChild(el("div",{"class":"modal-step-text"},el("strong",{},title+": "),desc));
-    modal.appendChild(step);
-  });
-  const closeBtn=el("button",{"class":"modal-close"},"Got it!");
+ 
+  const mhead=el("div",{"class":"modal-head"});
+  mhead.appendChild(el("h3",{},r.project_name||"Report"));
+  const closeBtn=el("button",{"class":"modal-close-btn"},"✕");
   closeBtn.addEventListener("click",()=>overlay.remove());
-  modal.appendChild(closeBtn);
+  mhead.appendChild(closeBtn);
+  modal.appendChild(mhead);
+ 
+  const mbody=el("div",{"class":"modal-body"});
+ 
+  // Report info
+  const infoSec=el("div",{"class":"modal-section"});
+  infoSec.appendChild(el("h4",{},"Report Information"));
+  [["Submitted By",r.tech_name+" ("+r.tech_email+")"],["Report Type",r.report_type],["Date",r.report_date],["Project",r.project_name],["Project Manager",r.project_manager],["Site / Client",r.site_client],["Client Contact",r.client_contact],["Status",r.project_status]].forEach(([l,v])=>{
+    const row=el("div",{"class":"modal-row"});
+    row.appendChild(el("div",{"class":"modal-row-label"},l));
+    row.appendChild(el("div",{"class":"modal-row-value"},v||"—"));
+    infoSec.appendChild(row);
+  });
+  mbody.appendChild(infoSec);
+ 
+  // Summary
+  if(r.summary){
+    const sumSec=el("div",{"class":"modal-section"});
+    sumSec.appendChild(el("h4",{},"Executive Summary"));
+    sumSec.appendChild(el("div",{style:"font-size:13px;color:#3A3A3A;line-height:1.7;white-space:pre-wrap"},r.summary));
+    mbody.appendChild(sumSec);
+  }
+ 
+  // Faults
+  if(faults.length){
+    const fSec=el("div",{"class":"modal-section"});
+    fSec.appendChild(el("h4",{},"Faults Reported ("+faults.length+")"));
+    faults.forEach((f,i)=>{
+      const item=el("div",{"class":"modal-item"});
+      const sc=f.status==="Resolved"?"#1E7C4A":f.status==="Outstanding"?"#B86C00":"#CC1C1C";
+      item.appendChild(el("div",{style:"display:flex;justify-content:space-between;margin-bottom:4px"},
+        el("span",{style:"font-weight:700;font-size:12px"},"F-"+String(i+1).padStart(2,"0")+" — "+(f.location||"No location")),
+        el("span",{"class":"badge",style:"background:"+sc},f.status)
+      ));
+      item.appendChild(el("div",{style:"font-size:12px;color:#555"},f.description||"No description"));
+      fSec.appendChild(item);
+    });
+    mbody.appendChild(fSec);
+  }
+ 
+  // Work Done
+  if(work.filter(w=>w.description).length){
+    const wSec=el("div",{"class":"modal-section"});
+    wSec.appendChild(el("h4",{},"Work Performed"));
+    work.filter(w=>w.description).forEach(w=>{
+      const item=el("div",{"class":"modal-item"});
+      if(w.area) item.appendChild(el("div",{"class":"modal-item-area"},w.area));
+      item.appendChild(el("div",{style:"font-size:12px;color:#3A3A3A"},w.description));
+      wSec.appendChild(item);
+    });
+    mbody.appendChild(wSec);
+  }
+ 
+  // Outstanding
+  if(outstanding.filter(o=>o.description).length){
+    const oSec=el("div",{"class":"modal-section"});
+    oSec.appendChild(el("h4",{},"Outstanding Items"));
+    outstanding.filter(o=>o.description).forEach((o,i)=>{
+      oSec.appendChild(el("div",{style:"display:flex;gap:10px;margin-bottom:8px;align-items:flex-start"},
+        el("span",{style:"background:#B86C00;color:#fff;min-width:22px;height:22px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;flex-shrink:0"},String(i+1)),
+        el("span",{style:"font-size:12px;color:#3A3A3A;padding-top:2px"},o.description)
+      ));
+    });
+    mbody.appendChild(oSec);
+  }
+ 
+  // Actions
+  if(actions.filter(a=>a.action).length){
+    const aSec=el("div",{"class":"modal-section"});
+    aSec.appendChild(el("h4",{},"Action Items"));
+    actions.filter(a=>a.action).forEach((a,i)=>{
+      const pc=a.priority==="High"?"#C0392B":a.priority==="Medium"?"#B86C00":"#1E7C4A";
+      const item=el("div",{"class":"modal-item"});
+      item.appendChild(el("div",{style:"display:flex;justify-content:space-between;margin-bottom:3px"},
+        el("span",{style:"font-weight:700;font-size:12px"},String(i+1)+". "+(a.action||"—")),
+        el("span",{style:"font-weight:700;color:"+pc+";font-size:11px"},a.priority)
+      ));
+      item.appendChild(el("div",{style:"font-size:11px;color:#888"},"Owner: "+(a.owner||"TBC")+"  |  Due: "+(a.due||"TBC")));
+      aSec.appendChild(item);
+    });
+    mbody.appendChild(aSec);
+  }
+ 
+  modal.appendChild(mbody);
+ 
+  const mactions=el("div",{"class":"modal-actions"});
+  const printBtn=el("button",{"class":"btn btn-primary"},"Print Report");
+  printBtn.addEventListener("click",()=>printReport(r));
+  mactions.appendChild(printBtn);
+  mactions.appendChild(el("button",{"class":"btn btn-ghost","onclick":()=>overlay.remove()},"Close"));
+  modal.appendChild(mactions);
+ 
   overlay.appendChild(modal);
   overlay.addEventListener("click",e=>{if(e.target===overlay)overlay.remove();});
   document.body.appendChild(overlay);
 }
-
+ 
 // ══════════════════════════════════════════════
-//  RENDER ENGINE
+//  PRINT REPORT
 // ══════════════════════════════════════════════
-function goTo(i) { currentStep=i; render(); }
-
-function render() {
-  document.getElementById("progressFill").style.width=Math.round(((currentStep+1)/STEPS.length)*100)+"%";
-
-  // Nav
-  const nav=document.createElement("div"); nav.className="step-nav";
-  STEPS.forEach((s,i)=>{
-    const b=el("button",{"class":"step-btn"+(i===currentStep?" active":i<currentStep?" done":""),"onclick":()=>goTo(i)},(i+1)+". "+s);
-    nav.appendChild(b);
+function printReport(r) {
+  const faults=JSON.parse(r.faults||"[]");
+  const work=JSON.parse(r.work_done||"[]");
+  const outstanding=JSON.parse(r.outstanding||"[]");
+  const actions=JSON.parse(r.actions||"[]");
+  const statusColor=r.project_status==="Completed"?"#1E7C4A":r.project_status&&r.project_status.includes("Awaiting")?"#B86C00":"#CC1C1C";
+ 
+  const faultRows=faults.map((f,i)=>{const sc=f.status==="Resolved"?"#1E7C4A":f.status==="Outstanding"?"#B86C00":"#CC1C1C";return`<tr><td style="padding:8px 10px;border:1px solid #ddd;text-align:center;font-size:12px">F-${String(i+1).padStart(2,"0")}</td><td style="padding:8px 10px;border:1px solid #ddd;font-size:12px;font-weight:700">${esc(f.location)||"—"}</td><td style="padding:8px 10px;border:1px solid #ddd;font-size:12px">${esc(f.description)||"—"}</td><td style="padding:8px 10px;border:1px solid #ddd;text-align:center"><span style="background:${sc};color:#fff;padding:3px 10px;border-radius:4px;font-size:11px;font-weight:700">${esc(f.status)}</span></td></tr>`;}).join("");
+  const workItems=work.filter(w=>w.description).map(w=>`<div style="margin-bottom:10px;padding:10px 14px;background:#E8F5E9;border-left:5px solid #1E7C4A;border-radius:4px">${w.area?`<div style="font-weight:700;font-size:11px;color:#1E7C4A;margin-bottom:4px;text-transform:uppercase">${esc(w.area)}</div>`:""}<div style="font-size:12px;color:#3A3A3A;line-height:1.7">${esc(w.description)}</div></div>`).join("");
+  const outItems=outstanding.filter(o=>o.description).map((o,i)=>`<div style="display:flex;gap:10px;margin-bottom:10px;align-items:flex-start"><span style="background:#B86C00;color:#fff;min-width:22px;height:22px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;flex-shrink:0">${i+1}</span><span style="font-size:12px;color:#3A3A3A;line-height:1.7">${esc(o.description)}</span></div>`).join("");
+  const actionRows=actions.filter(a=>a.action).map((a,i)=>{const pc=a.priority==="High"?"#C0392B":a.priority==="Medium"?"#B86C00":"#1E7C4A";return`<tr><td style="padding:8px 10px;border:1px solid #ddd;text-align:center;font-size:12px">${i+1}</td><td style="padding:8px 10px;border:1px solid #ddd;font-size:12px">${esc(a.action)}</td><td style="padding:8px 10px;border:1px solid #ddd;font-size:12px;background:#f7f7f7">${esc(a.owner)||"TBC"}</td><td style="padding:8px 10px;border:1px solid #ddd;text-align:center;font-size:12px">${esc(a.due)||"TBC"}</td><td style="padding:8px 10px;border:1px solid #ddd;text-align:center;font-weight:700;color:${pc};font-size:12px">${esc(a.priority)}</td></tr>`;}).join("");
+ 
+  const html=`<!DOCTYPE html><html><head><meta charset="UTF-8"><title>IMPI Report — ${esc(r.project_name)}</title>
+<style>*{box-sizing:border-box;margin:0;padding:0}body{font-family:Arial,sans-serif;background:#EBEBEB}@media print{body{background:#fff}.no-print{display:none!important}.page{box-shadow:none!important;margin:0!important}}.page{max-width:920px;margin:20px auto;background:#fff;box-shadow:0 2px 16px rgba(0,0,0,.1)}.hdr{display:flex;align-items:stretch;border-bottom:4px solid #CC1C1C}.hdr-logo{padding:18px 22px;border-right:3px solid #CC1C1C;display:flex;align-items:center}.ln{font-size:20px;font-weight:900;color:#CC1C1C;line-height:1}.lt{display:inline-block;background:#F5C200;color:#333;font-size:8px;font-weight:700;padding:1px 6px;letter-spacing:.05em;margin:3px 0}.li{font-size:13px;font-weight:900;color:#CC1C1C;letter-spacing:1px}.hdr-info{flex:1;padding:16px 22px}.cn{font-size:15px;font-weight:700;color:#CC1C1C}.cs{font-size:10px;color:#999;margin-top:2px}.rt{font-size:13px;font-weight:700;color:#3A3A3A;margin-top:8px}.rd{font-size:11px;color:#CC1C1C;font-weight:700;margin-top:2px}.conf{display:inline-block;background:#CC1C1C;color:#fff;font-size:9px;font-weight:700;padding:2px 7px;border-radius:3px;margin-top:4px;letter-spacing:.08em}.body{padding:24px 28px}.mt{width:100%;border-collapse:collapse;margin-bottom:20px;font-size:12px}.mt td{padding:7px 10px;border:1px solid #EEE}.mt td:first-child{font-weight:700;color:#8B0000;background:#F7F7F7;width:160px}.sh{background:#CC1C1C;color:#fff;font-size:11px;font-weight:700;letter-spacing:.08em;padding:8px 12px;border-radius:4px 4px 0 0;text-transform:uppercase;margin-top:20px}.sb{border:1.5px solid #CC1C1C;border-top:none;border-radius:0 0 4px 4px;padding:14px}.intro{font-size:12px;color:#666;margin:0 0 12px;line-height:1.6}table.dt{width:100%;border-collapse:collapse;font-size:12px}table.dt th{background:#CC1C1C;color:#fff;padding:8px 10px;text-align:left;font-size:11px;font-weight:700}table.dt tr:nth-child(even) td{background:#fafafa}.ow{background:#FFF8E1;border-left:5px solid #B86C00;padding:14px;border-radius:4px}.sg{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:6px}.sx{border:1px solid #ddd;padding:16px;border-radius:4px}.st{font-size:11px;font-weight:700;color:#CC1C1C;margin-bottom:14px}.sl{border-bottom:1px solid #ccc;margin:10px 0 3px}.slb{font-size:9px;color:#aaa}.ft{background:#f7f7f7;border-top:3px solid #CC1C1C;padding:8px 28px;display:flex;justify-content:space-between}.ftl{font-size:9px;color:#999}.ftc{font-size:9px;color:#CC1C1C;font-weight:700}.pb{position:fixed;bottom:20px;right:20px;background:#CC1C1C;color:#fff;border:none;padding:11px 22px;border-radius:7px;font-size:13px;font-weight:700;cursor:pointer;font-family:Arial,sans-serif}</style></head><body>
+<button class="pb no-print" onclick="window.print()">Print / Save PDF</button>
+<div class="page">
+<div class="hdr"><div class="hdr-logo"><div><div class="ln">AMANDLA</div><div><span class="lt">PROTECTION SERVICES</span></div><div class="li">/ IMPI \\</div></div></div><div class="hdr-info"><div class="cn">IMPI Protection Agency (Pty) Ltd</div><div class="cs">10 Kosmos Crescent, Rynoue AH, Roodeplaat | 012 543 0640 | info@impi-secure.co.za | www.impi-secure.co.za</div><div class="rt">${esc(r.report_type||"").toUpperCase()}</div><div class="rd">${esc(r.report_date||"")}</div><span class="conf">CONFIDENTIAL</span></div></div>
+<div class="body">
+<table class="mt"><tr><td>Submitted By</td><td>${esc(r.tech_name)} (${esc(r.tech_email)})</td></tr><tr><td>Report Date</td><td>${esc(r.report_date)}</td></tr><tr><td>Report Type</td><td>${esc(r.report_type)}</td></tr><tr><td>Project</td><td>${esc(r.project_name)||"—"}</td></tr><tr><td>Project Manager</td><td>${esc(r.project_manager)||"—"}</td></tr><tr><td>Site / Client</td><td>${esc(r.site_client)||"—"}</td></tr><tr><td>Client Contact</td><td>${esc(r.client_contact)||"—"}</td></tr><tr><td>Project Status</td><td><strong style="color:${statusColor}">${esc(r.project_status)}</strong></td></tr></table>
+${r.summary?`<div class="sh">1. Executive Summary</div><div class="sb">${r.summary.split(/\n\n+/).map(p=>`<p style="font-size:12px;line-height:1.8;margin:0 0 10px;color:#3A3A3A">${esc(p).replace(/\n/g,"<br>")}</p>`).join("")}</div>`:""}
+<div class="sh">${r.summary?"2.":"1."} Faults &amp; Problems Reported</div><div class="sb"><p class="intro">The following faults were reported during the site visit.</p><table class="dt"><thead><tr><th style="width:55px">Ref</th><th style="width:140px">Location</th><th>Description</th><th style="width:110px">Status</th></tr></thead><tbody>${faultRows||"<tr><td colspan='4' style='padding:10px;color:#999;text-align:center'>No faults recorded</td></tr>"}</tbody></table></div>
+<div class="sh">${r.summary?"3.":"2."} Work Performed Today</div><div class="sb"><p class="intro">The following work was carried out on site.</p>${workItems||"<p style='font-size:12px;color:#999'>No work items recorded.</p>"}</div>
+<div class="sh">${r.summary?"4.":"3."} Outstanding Work &amp; Client Requests</div><div class="sb"><p class="intro">The following items remain outstanding.</p><div class="ow">${outItems||"<p style='font-size:12px;color:#999;margin:0'>No outstanding items.</p>"}</div></div>
+<div class="sh">${r.summary?"5.":"4."} Action Items</div><div class="sb"><table class="dt"><thead><tr><th style="width:35px">#</th><th>Action</th><th style="width:130px">Owner</th><th style="width:100px">Due Date</th><th style="width:75px">Priority</th></tr></thead><tbody>${actionRows||"<tr><td colspan='5' style='padding:10px;color:#999;text-align:center'>No action items</td></tr>"}</tbody></table></div>
+<div class="sh">${r.summary?"6.":"5."} Sign-Off</div><div class="sb"><p style="font-size:11px;color:#B86C00;font-style:italic;margin:0 0 12px">Note: Final sign-off is subject to completion of all outstanding items.</p><div class="sg"><div class="sx"><div class="st">Prepared By — IMPI / Amandla</div><div class="slb">Name</div><div class="sl"></div><div class="slb">Signature</div><div class="sl"></div><div class="slb">Date</div><div class="sl"></div></div><div class="sx"><div class="st">Client Representative${r.client_contact?" ("+esc(r.client_contact)+")":""}</div><div class="slb">Name</div><div class="sl"></div><div class="slb">Signature</div><div class="sl"></div><div class="slb">Date</div><div class="sl"></div></div></div></div>
+</div><div class="ft"><span class="ftl">IMPI Protection Agency (Pty) Ltd | 10 Kosmos Crescent, Rynoue AH, Roodeplaat | 012 543 0640 | info@impi-secure.co.za</span><span class="ftc">CONFIDENTIAL</span></div></div></body></html>`;
+ 
+  const w=window.open("","_blank");
+  w.document.write(html);
+  w.document.close();
+}
+ 
+// ══════════════════════════════════════════════
+//  HEADER & MAIN RENDER
+// ══════════════════════════════════════════════
+function renderHeader(showProgress=true) {
+  const app=document.getElementById("app");
+  const header=el("div",{"class":"app-header"});
+  const inner=el("div",{"class":"header-inner"});
+  const logo=el("div",{"class":"logo-block"});
+  logo.appendChild(el("div",{"class":"logo-name"},"AMANDLA"));
+  const tagWrap=el("div"); tagWrap.appendChild(el("span",{"class":"logo-tag"},"PROTECTION SERVICES")); logo.appendChild(tagWrap);
+  logo.appendChild(el("div",{"class":"logo-impi"},"/ IMPI \\"));
+  inner.appendChild(logo);
+  const ht=el("div",{"class":"header-text"});
+  ht.appendChild(el("h1",{},"Report Builder"));
+  ht.appendChild(el("p",{},"Amandla Protection Services"));
+  if(showProgress){
+    const pb=el("div",{"class":"progress-bar"}); const pf=el("div",{"class":"progress-fill"}); pf.id="progressFill"; pf.style.width=Math.round(((currentStep+1)/STEPS.length)*100)+"%"; pb.appendChild(pf); ht.appendChild(pb);
+  }
+  inner.appendChild(ht);
+  const adminBtn=el("button",{"class":"header-admin-btn"},"Admin");
+  adminBtn.addEventListener("click",()=>{
+    if(ADMIN_TOKEN){APP_MODE="admin";renderAdminDashboard();}
+    else{APP_MODE="admin-login";renderAdminLogin();}
   });
-
-  const steps=[step0,step1,step2,step3,step4,step5];
-  const content=steps[currentStep]();
-
+  inner.appendChild(adminBtn);
+  header.appendChild(inner);
+  app.insertBefore(header,app.firstChild);
+}
+ 
+function goTo(i) { currentStep=i; render(); }
+ 
+function render() {
+  if(APP_MODE==="admin-login"){renderAdminLogin();return;}
+  if(APP_MODE==="admin"){renderAdminDashboard();return;}
+ 
   const app=document.getElementById("app");
   app.innerHTML="";
-
-  // Install banner only on step 0
-  if(currentStep===0){
-    const banner=showInstallBanner();
-    if(banner) app.appendChild(banner);
+  renderHeader(true);
+ 
+  const container=el("div",{"class":"container"});
+ 
+  // Install banner (iOS only)
+  const isIOS=/iphone|ipad|ipod/i.test(navigator.userAgent);
+  const isStandalone=window.matchMedia("(display-mode: standalone)").matches||window.navigator.standalone;
+  if(isIOS&&!isStandalone&&currentStep===0){
+    const banner=el("div",{"class":"install-banner"});
+    banner.appendChild(el("div",{style:"font-size:22px;flex-shrink:0"},"📱"));
+    const bt=el("div",{"class":"install-banner-text"});
+    bt.appendChild(el("h3",{},"Add to Home Screen"));
+    bt.appendChild(el("p",{},"Install for quick access — works offline too."));
+    banner.appendChild(bt);
+    const ib=el("button",{"class":"install-banner-btn"},"How?");
+    ib.addEventListener("click",showInstallModal);
+    banner.appendChild(ib);
+    container.appendChild(banner);
   }
-
-  app.appendChild(nav);
-  app.appendChild(content);
+ 
+  // Step nav
+  const nav=el("div",{"class":"step-nav"});
+  STEPS.forEach((s,i)=>{
+    const b=el("button",{"class":"step-btn"+(i===currentStep?" active":i<currentStep?" done":"")},i<currentStep?"✓ "+s:(i+1)+". "+s);
+    b.addEventListener("click",()=>goTo(i));
+    nav.appendChild(b);
+  });
+  container.appendChild(nav);
+ 
+  // Step content
+  const stepFns=[stepTechInfo,stepReportInfo,stepSummary,stepFaults,stepWork,stepOutstanding,stepActions,stepReview];
+  container.appendChild(stepFns[currentStep]());
+  app.appendChild(container);
   window.scrollTo({top:0,behavior:"smooth"});
 }
-
+ 
+function showInstallModal() {
+  const overlay=el("div",{"class":"imodal-overlay"});
+  const modal=el("div",{"class":"imodal"});
+  modal.appendChild(el("h2",{},"Add to Home Screen"));
+  modal.appendChild(el("p",{},"Install the IMPI Report Builder on your iPhone:"));
+  [["Tap the Share button","Tap the Share icon at the bottom of Safari (the box with an arrow pointing up)."],["Scroll and tap","Find and tap \"Add to Home Screen\" in the list."],["Tap Add","Tap \"Add\" in the top right corner."],["Done!","The app icon now lives on your home screen."]].forEach(([t,d],i)=>{
+    const s=el("div",{"class":"imodal-step"});
+    s.appendChild(el("div",{"class":"imodal-num"},String(i+1)));
+    s.appendChild(el("div",{"class":"imodal-text"},el("strong",{},t+": "),d));
+    modal.appendChild(s);
+  });
+  const cb=el("button",{"class":"imodal-close"},"Got it!"); cb.addEventListener("click",()=>overlay.remove());
+  modal.appendChild(cb);
+  overlay.appendChild(modal); overlay.addEventListener("click",e=>{if(e.target===overlay)overlay.remove();}); document.body.appendChild(overlay);
+}
+ 
+// ══════════════════════════════════════════════
+//  PWA
+// ══════════════════════════════════════════════
+if("serviceWorker" in navigator) { window.addEventListener("load",()=>navigator.serviceWorker.register("sw.js")); }
+ 
+// Auto-restore admin session
+if(ADMIN_TOKEN){ APP_MODE="admin"; }
 render();
 </script>
 </body>
 </html>
+ 
