@@ -1,4 +1,4 @@
-const CACHE = "impi-v1";
+const CACHE = "impi-v2";
 const BASE = "/impi-technical-reports";
 const FILES = [
   BASE + "/",
